@@ -1,30 +1,87 @@
 # oz-redux-dispatcher
-useDispatch made easy
 
-# React + TypeScript + Vite
+This utility get all actions into useDispatch hook.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uses [oz-redux-reducer](https://github.com/ofir-zeitoun/oz-redux-reducer)
 
-Currently, two official plugins are available:
+Works with:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. [Redux](https://redux.js.org/ "Official site")
+1. [Redux Thunk](https://www.npmjs.com/package/redux-thunk "npm")
+1. [React Redux](https://www.npmjs.com/package/react-redux "npm")
 
-## Expanding the ESLint configuration
+## Example:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+[Live demo - TBD](https://ofir-zeitoun.github.io/oz-redux-dispatcher/)
 
-- Configure the top-level `parserOptions` property like this:
+## Install:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+First follow instruction of [oz-redux-reducer](https://www.npmjs.com/package/oz-redux-reducer)
+
+```
+npm i oz-redux-dispatcher
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage:
+
+`store/reducers/test`: 
+```ts
+import { buildOzReducer } from "oz-redux-reducer";
+// .
+// .
+// .
+export const [testReducer, testActions] = buildOzReducer({
+  text: "test",
+  setText(state: object, newValue: string) {
+    return { ...state, text: newValue };
+  },
+  async fetchText(dispatch: Function) {
+    const value = await fetch(
+      ///...
+    ).then(response => response.text());
+    dispatch(testActions.setText(value));
+  };
+});
+```
+
+in `store/reducers/index.ts` file:
+
+```ts
+import { combineReducers } from "redux";
+
+// ...
+import { testReducer } from "./TestReducer";
+// ...
+
+export default combineReducers({
+  // ...
+  test: testReducer
+  // ...
+});
+```
+
+in `store/actions/index.ts` file:
+```ts
+import { useOzDispatchActions } from "oz-redux-dispatcher";
+
+import { testActions } from "../reducers/test-reducer";
+
+export const useTestActions = () => useOzDispatchActions(testActions);
+
+```
+
+calling actions:
+
+```tsx
+import { useTestActions } from "../store";
+
+export default function ShowText({ text = "" }: { text?: string }) {
+  const { dispatchAdd } = useTestActions();
+
+  return (
+    <button onClick={() => dispatchSetText(text)}>Set text</button>
+  );
+}
+```
+
+### Now replace old reducers with new ozReducer & ozDispatcher 😉
