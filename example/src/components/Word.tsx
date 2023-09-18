@@ -3,13 +3,13 @@ import { shallowEqual, useSelector } from "react-redux";
 import { useTestActions } from "../store";
 
 export default function Word() {
-  const { dispatchFetchWord} = useTestActions();
+  const { dispatchFetchWord } = useTestActions();
   const [wordLength, setWordLength] = useState(5);
 
   const { word, prev } = useSelector(
     (state: { test: { word: string; prev: string } }) => ({
       word: state.test.word,
-      prev: state.test.prev
+      prev: state.test.prev,
     }),
     shallowEqual
   );
@@ -23,7 +23,9 @@ export default function Word() {
         min="3"
         max="10"
         value={wordLength}
-        onChange={(e: ChangeEvent<HTMLInputElement>) => setWordLength(Number(e.target.value))}
+        onChange={(e: ChangeEvent<HTMLInputElement>) =>
+          setWordLength(Number(e.target.value))
+        }
         step="1"
       />
       <button

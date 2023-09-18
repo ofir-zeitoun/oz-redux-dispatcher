@@ -1,4 +1,5 @@
-import { buildOzReducer } from "oz-redux-reducer";
+import { Dispatch } from "redux";
+import { GetState, buildOzReducer } from "oz-redux-reducer";
 
 type TestState = {
   sum: number;
@@ -22,7 +23,7 @@ export const [testReducer, testActions] = buildOzReducer({
   setSum(state: TestState, sum: number) {
     return { ...state, sum };
   },
-  async fetchRandom(dispatch: Function) {
+  async fetchRandom(dispatch: Dispatch) {
     const value = await fetch(
       "https://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new"
     ).then((response) => response.json());
@@ -32,8 +33,8 @@ export const [testReducer, testActions] = buildOzReducer({
     return { ...state, prev: state.word, word };
   },
   async fetchWord(
-    dispatch: Function,
-    getState: () => TestState,
+    dispatch: Dispatch,
+    getState: GetState<TestState>,
     extraArgument: any,
     payload: number
   ) {
