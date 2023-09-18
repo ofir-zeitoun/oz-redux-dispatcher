@@ -2,6 +2,11 @@
   "name": "oz-redux-dispatcher",
   "version": "0.0.1",
   "type": "module",
+  "keywords": [
+    "Redux",
+    "reducer",
+    "react"
+  ],
   "main": "lib/index",
   "files": [
     "lib"

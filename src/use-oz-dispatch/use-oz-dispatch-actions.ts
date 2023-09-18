@@ -1,11 +1,14 @@
 import { useDispatch } from "react-redux";
-import { Entry } from "oz-redux-reducer";
 
 import { DispatchFunctions } from "./use-oz-dispatch-actions.types";
 
 function capitalize(text: string): string {
   return `${text[0].toUpperCase()}${text.substring(1)}`;
 }
+
+type Entry<T> = {
+  [K in keyof T]: [K, T[K]];
+}[keyof T];
 
 export function useOzDispatchActions<
   T extends {

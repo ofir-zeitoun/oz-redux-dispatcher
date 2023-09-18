@@ -16,6 +16,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         format: "es",
+        globals: {
+          "react-redux": "reactRedux",
+        },
       },
       external: ["react", "react/jsx-runtime", "redux", "react-redux"],
     },
