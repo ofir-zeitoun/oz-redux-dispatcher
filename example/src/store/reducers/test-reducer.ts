@@ -34,8 +34,8 @@ export const [testReducer, testActions] = buildOzReducer({
   },
   async fetchWord(
     dispatch: Dispatch,
-    getState: GetState<TestState>,
-    extraArgument: any,
+    _getState: GetState<TestState>,
+    _extraArgument: any,
     payload: number
   ) {
     
