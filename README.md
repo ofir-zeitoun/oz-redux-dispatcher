@@ -24,7 +24,8 @@ npm i oz-redux-dispatcher
 
 ## Usage:
 
-`store/reducers/test`: 
+`store/reducers/test`:
+
 ```ts
 import { buildOzReducer } from "oz-redux-reducer";
 // .
@@ -55,19 +56,19 @@ import { testReducer } from "./TestReducer";
 
 export default combineReducers({
   // ...
-  test: testReducer
+  test: testReducer,
   // ...
 });
 ```
 
 in `store/actions/index.ts` file:
+
 ```ts
 import { useOzDispatchActions } from "oz-redux-dispatcher";
 
 import { testActions } from "../reducers/test-reducer";
 
 export const useTestActions = () => useOzDispatchActions(testActions);
-
 ```
 
 calling actions:
@@ -76,11 +77,9 @@ calling actions:
 import { useTestActions } from "../store";
 
 export default function ShowText({ text = "" }: { text?: string }) {
-  const { dispatchAdd } = useTestActions();
+  const { dispatchSetText } = useTestActions();
 
-  return (
-    <button onClick={() => dispatchSetText(text)}>Set text</button>
-  );
+  return <button onClick={() => dispatchSetText(text)}>Set text</button>;
 }
 ```
 
