@@ -2,6 +2,7 @@
   "name": "oz-redux-dispatcher",
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://ofir-zeitoun.github.io/oz-redux-dispatcher/",
   "keywords": [
     "Redux",
     "reducer",
@@ -16,7 +17,9 @@
     "dev": "vite",
     "build": "tsc  && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build && pushd example && set PUBLIC_URL=/oz-redux-dispatcher npm run build && popd",
+    "deploy": "gh-pages -d example/dist"
   },
   "peerdependencies": {
     "oz-redux-reducer": "^2.0.11",

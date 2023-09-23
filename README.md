@@ -12,7 +12,7 @@ Works with:
 
 ## Example:
 
-[Live demo - TBD](https://ofir-zeitoun.github.io/oz-redux-dispatcher/)
+[Live demo](https://ofir-zeitoun.github.io/oz-redux-dispatcher/)
 
 ## Install:
 
