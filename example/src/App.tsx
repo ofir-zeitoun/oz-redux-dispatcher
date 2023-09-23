@@ -12,7 +12,14 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <header className="App-header">CRA Redux Example</header>
+        <header className="App-header">
+          <a
+            href="https://github.com/ofir-zeitoun/oz-redux-dispatcher"
+            target="_blank"
+          >
+            useDispatchActions
+          </a>
+        </header>
         <main>
           <div>
             <Sum />
