@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { GetState, buildOzReducer } from "oz-redux-reducer";
+import { GetState, buildReducer } from "oz-redux-reducer";
 
 type TestState = {
   sum: number;
@@ -7,7 +7,7 @@ type TestState = {
   prev: string;
 };
 
-export const [testReducer, testActions] = buildOzReducer({
+export const [testReducer, testActions] = buildReducer({
   sum: 0,
   word: "<Empty>",
   prev: "<Empty>",
@@ -38,7 +38,6 @@ export const [testReducer, testActions] = buildOzReducer({
     _extraArgument: any,
     payload: number
   ) {
-    
     const word = await fetch(
       `https://www.random.org/strings/?num=1&len=${payload}&digits=on&upperalpha=on&loweralpha=on&format=plain&rnd=new`
     ).then((response) => response.text());

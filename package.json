@@ -1,11 +1,12 @@
 {
   "name": "oz-redux-dispatcher",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "type": "module",
   "keywords": [
     "Redux",
     "reducer",
-    "react"
+    "react",
+    "oz-build-reducer"
   ],
   "main": "lib/index",
   "files": [

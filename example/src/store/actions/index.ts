@@ -1,5 +1,5 @@
-import { useOzDispatchActions } from "oz-redux-dispatcher";
+import { useDispatchActions } from "oz-redux-dispatcher";
 
 import { testActions } from "../reducers/test-reducer";
 
-export const useTestActions = () => useOzDispatchActions(testActions);
+export const useTestActions = () => useDispatchActions(testActions);

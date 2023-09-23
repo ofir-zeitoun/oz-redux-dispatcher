@@ -24,60 +24,23 @@ npm i oz-redux-dispatcher
 
 ## Usage:
 
-`store/reducers/test`:
-
-```ts
-import { buildOzReducer } from "oz-redux-reducer";
-// .
-// .
-// .
-export const [testReducer, testActions] = buildOzReducer({
-  text: "test",
-  setText(state: object, newValue: string) {
-    return { ...state, text: newValue };
-  },
-  async fetchText(dispatch: Function) {
-    const value = await fetch(
-      ///...
-    ).then(response => response.text());
-    dispatch(testActions.setText(value));
-  };
-});
-```
-
-in `store/reducers/index.ts` file:
-
-```ts
-import { combineReducers } from "redux";
-
-// ...
-import { testReducer } from "./TestReducer";
-// ...
-
-export default combineReducers({
-  // ...
-  test: testReducer,
-  // ...
-});
-```
-
 in `store/actions/index.ts` file:
 
 ```ts
-import { useOzDispatchActions } from "oz-redux-dispatcher";
+import { useDispatchActions } from "oz-redux-dispatcher";
 
-import { testActions } from "../reducers/test-reducer";
+import { demoActions } from "../reducers/demo-reducer";
 
-export const useTestActions = () => useOzDispatchActions(testActions);
+export const useDemoActions = () => useDispatchActions(demoActions);
 ```
 
 calling actions:
 
 ```tsx
-import { useTestActions } from "../store";
+import { useDemoActions } from "../store";
 
 export default function ShowText({ text = "" }: { text?: string }) {
-  const { dispatchSetText } = useTestActions();
+  const { dispatchSetText } = useDemoActions();
 
   return <button onClick={() => dispatchSetText(text)}>Set text</button>;
 }

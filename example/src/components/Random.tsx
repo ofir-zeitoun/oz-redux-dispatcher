@@ -1,8 +1,8 @@
 import { useTestActions } from "../store";
 
 export default function Random() {
-  const { dispatchFetchRandom} = useTestActions();
-  
+  const { dispatchFetchRandom } = useTestActions();
+
   return (
     <button
       onClick={dispatchFetchRandom}

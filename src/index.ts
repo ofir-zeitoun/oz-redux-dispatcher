@@ -1,1 +1,1 @@
-export * from "./use-oz-dispatch";
+export * from "./use-dispatch-actions";
